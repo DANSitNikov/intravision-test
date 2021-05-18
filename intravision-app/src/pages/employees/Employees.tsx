@@ -1,9 +1,10 @@
 import React from 'react';
+import StyledEmployees from './styled';
 
 const Employees: React.FC = () => (
-  <div>
-    Работники
-  </div>
+  <StyledEmployees>
+    Сотрудники
+  </StyledEmployees>
 );
 
 export default Employees;

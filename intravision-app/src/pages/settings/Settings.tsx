@@ -1,9 +1,10 @@
 import React from 'react';
+import StyledSettings from './styled';
 
 const Settings: React.FC = () => (
-  <div>
-    настройки
-  </div>
+  <StyledSettings>
+    Настройки
+  </StyledSettings>
 );
 
 export default Settings;

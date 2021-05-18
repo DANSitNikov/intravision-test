@@ -1,9 +1,10 @@
 import React from 'react';
+import StyledAssets from './styled';
 
 const Assets: React.FC = () => (
-  <div>
+  <StyledAssets>
     Активы
-  </div>
+  </StyledAssets>
 );
 
 export default Assets;

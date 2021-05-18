@@ -1,9 +1,10 @@
 import React from 'react';
+import StyledClients from './styled';
 
 const Clients: React.FC = () => (
-  <div>
-    клиенты
-  </div>
+  <StyledClients>
+    Клиенты
+  </StyledClients>
 );
 
 export default Clients;
