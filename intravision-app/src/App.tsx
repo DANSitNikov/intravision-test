@@ -1,30 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Menu from './components/menu';
+import DataBase from './pages/database';
+import Request from './pages/request';
+import Employees from './pages/employees';
+import Clients from './pages/clients';
+import Settings from './pages/settings/Settings';
+import Assets from './pages/assets';
+import IntraVision from './pages/intravision';
 
-function App() {
+const App: React.FC = () => {
+  console.log('aaa');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Menu />
+      <Switch>
+        <Route path="/database" component={DataBase} />
+        <Route path="/request" component={Request} />
+        <Route path="/employees" component={Employees} />
+        <Route path="/clients" component={Clients} />
+        <Route path="/assets" component={Assets} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/" component={IntraVision} />
+      </Switch>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
