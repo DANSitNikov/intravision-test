@@ -18,9 +18,22 @@ const StyledForm = styled.div`
     height: 150px;
     resize: vertical;
   }
-  
-  button {
-    margin-top: 60px;
+`;
+
+export const StyledSubmitButton = styled.button`
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #008cf0;
+  color: white;
+  outline: none;
+  transition: all 0.3s;
+  margin-top: 60px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #017dd4;
   }
 `;
 

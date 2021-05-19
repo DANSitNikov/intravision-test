@@ -9,6 +9,7 @@ const StyledRequestButton = styled.button`
   color: white;
   outline: none;
   transition: all 0.3s;
+  margin: 25px 0 0 262px;
 
   &:hover {
     cursor: pointer;

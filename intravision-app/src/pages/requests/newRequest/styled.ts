@@ -5,7 +5,9 @@ const StyledNewRequest = styled.div`
   background-color: #ecf3f7;
   position: absolute;
   top: 65px;
-  right: -975px;
+  transition: all -0.3s;
+  right: ${(props: {panelStatus: boolean}) => (props.panelStatus ? 0 : -975)}px;
+  height: ${(props: {panelStatus: boolean}) => (props.panelStatus ? 100 : 0)}%;
 `;
 
 export const StyledNewRequestHeader = styled.div`
@@ -20,6 +22,7 @@ export const StyledNewRequestHeader = styled.div`
   p {
     font-size: 18px;
     font-weight: 400;
+    color: white;
   }
 `;
 
