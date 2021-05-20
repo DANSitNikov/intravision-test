@@ -9,7 +9,7 @@ const StyledSearchRequest = styled.div`
   background: #d1e0ed;
   padding-top: 15px;
   padding-bottom: 10px;
-  z-index: 100;
+  z-index: ${(props: {status: boolean}) => (props.status ? -1 : 10)} !important;;
   padding-left: 112px;
 `;
 

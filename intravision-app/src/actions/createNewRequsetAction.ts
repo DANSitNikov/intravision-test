@@ -26,8 +26,8 @@ export const postNewRequest = (request: Request) => async (dispatch: Dispatch) =
   }).catch((err) => console.log(err));
 
   const response = await axios.get('http://intravision-task.test01.intravision.ru/odata/tasks?tenantguid=4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc');
-  const data = response.data.value.reverse();
-  dispatch(updateRequests(data));
+  const pushRequest = response.data.value[response.data.value.length - 1];
+  dispatch(updateRequests(pushRequest));
 };
 
 export default createNewRequestAction;

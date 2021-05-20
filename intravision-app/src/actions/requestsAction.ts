@@ -7,9 +7,9 @@ const requestsAction = {
     type: 'GET_REQUESTS',
     requests,
   }) as const,
-  updateRequests: (requests: Array<Request>) => ({
+  updateRequests: (request: Request) => ({
     type: 'UPDATE_REQUESTS',
-    requests,
+    request,
   }) as const,
 };
 

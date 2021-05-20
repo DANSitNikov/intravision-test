@@ -17,6 +17,10 @@ import EditStatus from './components/editStatus';
 import Applicant from './components/applicant';
 import Executor from './components/executor';
 import Priority from './components/priority';
+import Creator from './components/creator';
+import Deadline from './components/deadline';
+import Tags from './components/tags';
+import ChoosePerson from '../../../components/choosePerson/ChoosePerson';
 
 const NewRequest: React.FC = () => {
   const panelStatus = useSelector(getNewReqPanelStatus);
@@ -84,18 +88,14 @@ const NewRequest: React.FC = () => {
               <StyledChangeParametersBlock>
                 <EditStatus />
                 <Applicant />
+                <Creator />
                 <Executor />
                 <Priority />
-                <div>
-                  <h3>Срок</h3>
-                  <p>dfdsfs</p>
-                </div>
-                <div>
-                  <h3>Теги</h3>
-                  <p>dsfdfsd</p>
-                </div>
+                <Deadline />
+                <Tags />
               </StyledChangeParametersBlock>
             </StyledEditPanel>
+            <ChoosePerson />
           </>
         )
       }

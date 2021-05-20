@@ -10,3 +10,5 @@ export const getRequests = (state: GlobalState): Array<Request> => state.request
 export const getStatuses = (state: GlobalState): Array<Status> => state.parameters.statuses;
 export const getUsers = (state: GlobalState): Array<User> => state.parameters.users;
 export const getPriorities = (state: GlobalState): Array<Priority> => state.parameters.priorities;
+export const getUserName = (state: GlobalState): string => state.choosePerson.name;
+export const getPopupStatus = (state: GlobalState): boolean => state.choosePerson.status;

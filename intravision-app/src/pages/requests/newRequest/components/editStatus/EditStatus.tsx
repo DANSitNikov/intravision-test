@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getStatuses } from '../../../../../selectors/selectors';
+import StyledEditStatus, { StyledSelectList, StyledStatus, StyledStatusHeader } from './styled';
+import { Status } from '../../../../../reducers/requestParametersReducer';
 
 const EditStatus: React.FC = () => {
   const statuses = useSelector(getStatuses);
-  console.log(statuses);
+  const [activeStatus, setActiveStatus] = useState<Status>(statuses[0]);
+  const [listStatus, setListStatus] = useState(false);
+
   return (
-    <select>
-      status
-    </select>
+    <StyledEditStatus>
+      <StyledStatusHeader>
+        Статус
+      </StyledStatusHeader>
+      <StyledStatus
+        color={activeStatus.rgb}
+        onClick={() => setListStatus(!listStatus)}
+      >
+        {activeStatus.name}
+      </StyledStatus>
+      <StyledSelectList status={listStatus}>
+        {
+          statuses.map((status: Status) => {
+            return (
+              <StyledStatus
+                color={status.rgb}
+                onClick={() => {
+                  setActiveStatus(status);
+                  setListStatus(false);
+                }}
+              >
+                {status.name}
+              </StyledStatus>
+            );
+          })
+        }
+      </StyledSelectList>
+    </StyledEditStatus>
   );
 };
 
