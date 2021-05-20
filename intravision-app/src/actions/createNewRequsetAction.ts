@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
+import requestsAction from './requestsAction';
 
 const createNewRequestAction = {
   changePanelStatus: (active: boolean) => ({
@@ -18,15 +19,15 @@ interface Request {
 }
 
 export const postNewRequest = (request: Request) => async (dispatch: Dispatch) => {
-  // await axios.post('http://intravision-task.test01.intravision.ru/api/4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc/Tasks', {
-  //   name: request.name,
-  //   description: request.description,
-  //   statusId: 50482,
-  //   priorityId: 42068,
-  //   resolutionDatePlan: '2021-05-20T08:25:30.041Z',
-  // }).then((res) => console.log('1'));
+  const { updateRequests } = requestsAction;
+  await axios.post('http://intravision-task.test01.intravision.ru/api/4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc/Tasks', {
+    name: request.name,
+    description: request.description,
+  }).catch((err) => console.log(err));
 
-  const res = await axios.get('http://intravision-task.test01.intravision.ru/odata/tasks?tenantguid=4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc');
+  const response = await axios.get('http://intravision-task.test01.intravision.ru/odata/tasks?tenantguid=4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc');
+  const data = response.data.value.reverse();
+  dispatch(updateRequests(data));
 };
 
 export default createNewRequestAction;

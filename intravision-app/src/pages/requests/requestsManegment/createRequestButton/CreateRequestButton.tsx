@@ -9,7 +9,6 @@ const CreateRequestButton: React.FC = () => {
 
   const handleClick = () => {
     dispatch(changePanelStatus(true));
-    document.body.style.overflowY = 'hidden';
   };
 
   return (

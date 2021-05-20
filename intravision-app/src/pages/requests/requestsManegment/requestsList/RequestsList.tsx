@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledRequestsList, {
+  StyledRequestsListContent,
   StyledRequestsListHeader,
+  StyledTaskDifficulty,
 } from './styled';
 import { getRequests } from '../../../../selectors/selectors';
 import Loader from '../../../../components/loader';
@@ -22,16 +24,23 @@ const RequestsList: React.FC = () => {
       ? <Loader />
       : (
         <StyledRequestsList>
+          <StyledRequestsListHeader>
+            <p />
+            <h3>ID</h3>
+            <h3>Название</h3>
+            <h3>Статус</h3>
+            <h3>Исполнитель</h3>
+          </StyledRequestsListHeader>
           {
             allRequests.map((request) => {
               return (
-                <StyledRequestsListHeader key={request.id}>
-                  <p />
-                  <h3>{request.id}</h3>
-                  <h3>{request.name}</h3>
-                  <h3>{request.statusName}</h3>
-                  <h3>{request.executorName}</h3>
-                </StyledRequestsListHeader>
+                <StyledRequestsListContent key={request.id}>
+                  <StyledTaskDifficulty back={request.statusRgb} />
+                  <p>{request.id}</p>
+                  <p>{request.name}</p>
+                  <p>{request.statusName}</p>
+                  <p>{request.executorName}</p>
+                </StyledRequestsListContent>
               );
             })
           }

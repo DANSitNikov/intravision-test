@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const StyledSearchRequest = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 65px;
   width: 100%;
   background: #d1e0ed;
   padding-top: 15px;
-  padding-left: 17px;
   padding-bottom: 10px;
+  z-index: 100;
+  padding-left: 112px;
 `;
 
 export const StyledSearchInputWrapper = styled.div`

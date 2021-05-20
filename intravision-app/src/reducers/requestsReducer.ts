@@ -46,6 +46,12 @@ const requestsReducer = (state = initialState, action: ActionType): InitialState
         ...state,
         requests: action.requests,
       };
+    case 'UPDATE_REQUESTS': {
+      return {
+        ...state,
+        requests: [...action.requests],
+      };
+    }
     default:
       return state;
   }

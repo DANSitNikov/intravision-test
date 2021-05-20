@@ -1,11 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import StyledNewRequest, { StyledNameRequest, StyledNewRequestCloseHeader, StyledNewRequestHeader } from './styled';
+import StyledNewRequest, {
+  StyledBorder, StyledChangeParametersBlock,
+  StyledEditPanel, StyledMainContent,
+  StyledNameRequest,
+  StyledNewRequestCloseHeader,
+  StyledNewRequestHeader,
+} from './styled';
 import close from '../../../assets/images/close.png';
 import { getNewReqEditPanelStatus, getNewReqPanelStatus } from '../../../selectors/selectors';
 import createNewRequestAction from '../../../actions/createNewRequsetAction';
 import NewRequestForm from './newRequestForm';
 import AddCommentForm from './addCommentForm';
+import Comment from '../../../components/comment';
 
 const NewRequest: React.FC = () => {
   const panelStatus = useSelector(getNewReqPanelStatus);
@@ -52,19 +59,28 @@ const NewRequest: React.FC = () => {
                 <img src={close} alt="закрыть" />
               </StyledNewRequestCloseHeader>
             </StyledNewRequestHeader>
-            <p>Описание</p>
-            <p>
-              Длительное время занимает сохранение продажи
-              (вне зависимости от кол-ва добавленных товаров).
-              Проверить, почему занимает столько времени.
-              Это третья строка Это третья строкаЭто
-              третья строкаЭто третья строкаЭто третья
-              строкаЭто третья строкаЭто третья строкаЭто
-              третья строкаЭто третья строкаЭто третья
-              строкаЭто третья строка  третья строка
-              тья строка  тья строка  конец!
-            </p>
-            <AddCommentForm />
+            <StyledEditPanel>
+              <StyledMainContent>
+                <p>Описание</p>
+                <p>
+                  Длительное время занимает сохранение продажи
+                  (вне зависимости от кол-ва добавленных товаров).
+                  Проверить, почему занимает столько времени.
+                  Это третья строка Это третья строкаЭто
+                  третья строкаЭто третья строкаЭто третья
+                  строкаЭто третья строкаЭто третья строкаЭто
+                  третья строкаЭто третья строкаЭто третья
+                  строкаЭто третья строка  третья строка
+                  тья строка  тья строка  конец!
+                </p>
+                <AddCommentForm />
+                <Comment />
+              </StyledMainContent>
+              <StyledBorder />
+              <StyledChangeParametersBlock>
+                one
+              </StyledChangeParametersBlock>
+            </StyledEditPanel>
           </>
         )
       }

@@ -85,7 +85,7 @@ export const StyledRequestsListContent = styled.div`
 export const StyledTaskDifficulty = styled.div`
   width: 5px;
   height: 50px;
-  background: black;
+  background: ${(props: {back: string}) => props.back};
   border-radius: 2px;
   position: relative;
 `;

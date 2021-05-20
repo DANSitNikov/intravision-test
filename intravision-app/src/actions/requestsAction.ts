@@ -1,9 +1,14 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
+import { Request } from '../reducers/requestsReducer';
 
 const requestsAction = {
-  getAllRequests: (requests: any) => ({
+  getAllRequests: (requests: Array<Request>) => ({
     type: 'GET_REQUESTS',
+    requests,
+  }) as const,
+  updateRequests: (requests: Array<Request>) => ({
+    type: 'UPDATE_REQUESTS',
     requests,
   }) as const,
 };

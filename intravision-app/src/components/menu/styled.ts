@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const StyledMenu = styled.div`
   min-height: 100vh;
   background: #002137;
+  z-index: 200;
   
   a {
     display: flex;

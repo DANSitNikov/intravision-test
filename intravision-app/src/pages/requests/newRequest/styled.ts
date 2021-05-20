@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const StyledNewRequest = styled.div`
+  position: fixed;
   width: 975px;
   background-color: #ecf3f7;
-  position: absolute;
   top: 65px;
   transition: all -0.3s;
   right: ${(props: {panelStatus: boolean}) => (props.panelStatus ? 0 : -975)}px;
@@ -45,6 +45,24 @@ export const StyledNewRequestCloseHeader = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const StyledEditPanel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StyledMainContent = styled.div`
+  padding: 39px;
+`;
+
+export const StyledChangeParametersBlock = styled.div`
+  padding: 39px;
+`;
+
+export const StyledBorder = styled.div`
+  width: 2px;
+  background-color: #d7dce0 !important;
 `;
 
 export default StyledNewRequest;
