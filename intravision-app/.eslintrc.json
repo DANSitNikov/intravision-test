@@ -29,6 +29,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
         "no-use-before-define": "off",
         "jsx-a11y/label-has-associated-control": 0,
-        "import/prefer-default-export": 0
+        "import/prefer-default-export": 0,
+        "arrow-body-style": 0
     }
 }

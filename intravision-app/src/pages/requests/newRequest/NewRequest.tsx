@@ -1,30 +1,73 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import StyledNewRequest, { StyledNewRequestCloseHeader, StyledNewRequestHeader } from './styled';
+import StyledNewRequest, { StyledNameRequest, StyledNewRequestCloseHeader, StyledNewRequestHeader } from './styled';
 import close from '../../../assets/images/close.png';
-import { getNewReqPanelStatus } from '../../../selectors/selectors';
+import { getNewReqEditPanelStatus, getNewReqPanelStatus } from '../../../selectors/selectors';
 import createNewRequestAction from '../../../actions/createNewRequsetAction';
-import NewRequestForm from './form';
+import NewRequestForm from './newRequestForm';
+import AddCommentForm from './addCommentForm';
 
 const NewRequest: React.FC = () => {
   const panelStatus = useSelector(getNewReqPanelStatus);
-  const { changePanelStatus } = createNewRequestAction;
+  const editPanelStatus = useSelector(getNewReqEditPanelStatus);
+  const { changePanelStatus, changeEditPanelStatus } = createNewRequestAction;
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(changePanelStatus(false));
-    document.body.style.overflowY = 'auto';
   };
 
   return (
     <StyledNewRequest panelStatus={panelStatus}>
-      <StyledNewRequestHeader>
-        <p>Новая заявка</p>
-        <StyledNewRequestCloseHeader onClick={handleClick}>
-          <img src={close} alt="закрыть" />
-        </StyledNewRequestCloseHeader>
-      </StyledNewRequestHeader>
-      <NewRequestForm />
+      {
+        !editPanelStatus
+        && (
+        <>
+          <StyledNewRequestHeader>
+            <p>Новая заявка</p>
+            <StyledNewRequestCloseHeader onClick={handleClick}>
+              <img src={close} alt="закрыть" />
+            </StyledNewRequestCloseHeader>
+          </StyledNewRequestHeader>
+          <NewRequestForm />
+        </>
+        )
+      }
+      {
+        editPanelStatus
+        && (
+          <>
+            <StyledNewRequestHeader>
+              <p>№ 67 304</p>
+              <StyledNameRequest>
+                Просьба оценить разработку рекламного баннера на новорижском шоссе.
+                Форматы 600x500x30. Материал – полиестирол хорошего качества.
+              </StyledNameRequest>
+              <StyledNewRequestCloseHeader
+                onClick={() => {
+                  handleClick();
+                  dispatch(changeEditPanelStatus(false));
+                }}
+              >
+                <img src={close} alt="закрыть" />
+              </StyledNewRequestCloseHeader>
+            </StyledNewRequestHeader>
+            <p>Описание</p>
+            <p>
+              Длительное время занимает сохранение продажи
+              (вне зависимости от кол-ва добавленных товаров).
+              Проверить, почему занимает столько времени.
+              Это третья строка Это третья строкаЭто
+              третья строкаЭто третья строкаЭто третья
+              строкаЭто третья строкаЭто третья строкаЭто
+              третья строкаЭто третья строкаЭто третья
+              строкаЭто третья строка  третья строка
+              тья строка  тья строка  конец!
+            </p>
+            <AddCommentForm />
+          </>
+        )
+      }
     </StyledNewRequest>
   );
 };

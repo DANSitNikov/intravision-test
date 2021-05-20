@@ -8,6 +8,7 @@ const StyledNewRequest = styled.div`
   transition: all -0.3s;
   right: ${(props: {panelStatus: boolean}) => (props.panelStatus ? 0 : -975)}px;
   height: ${(props: {panelStatus: boolean}) => (props.panelStatus ? 100 : 0)}%;
+  overflow-y: auto;
 `;
 
 export const StyledNewRequestHeader = styled.div`
@@ -24,6 +25,11 @@ export const StyledNewRequestHeader = styled.div`
     font-weight: 400;
     color: white;
   }
+`;
+
+export const StyledNameRequest = styled.p`
+  font-size: 16px !important;
+  max-width: 600px;
 `;
 
 export const StyledNewRequestCloseHeader = styled.button`

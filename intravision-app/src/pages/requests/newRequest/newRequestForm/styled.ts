@@ -17,6 +17,7 @@ const StyledForm = styled.div`
     width: 600px;
     height: 150px;
     resize: vertical;
+    outline: none;
   }
 `;
 
@@ -29,12 +30,20 @@ export const StyledSubmitButton = styled.button`
   color: white;
   outline: none;
   transition: all 0.3s;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 
   &:hover {
     cursor: pointer;
     background-color: #017dd4;
   }
+`;
+
+export const StyledErrorMessage = styled.span`
+  position: absolute;
+  top: 0;
+  left: 200px;
+  color: red;
 `;
 
 export default StyledForm;
