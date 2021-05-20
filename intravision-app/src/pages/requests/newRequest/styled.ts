@@ -57,6 +57,7 @@ export const StyledMainContent = styled.div`
 `;
 
 export const StyledChangeParametersBlock = styled.div`
+  width: 230px;
   padding: 39px;
 `;
 

@@ -13,6 +13,10 @@ import createNewRequestAction from '../../../actions/createNewRequsetAction';
 import NewRequestForm from './newRequestForm';
 import AddCommentForm from './addCommentForm';
 import Comment from '../../../components/comment';
+import EditStatus from './components/editStatus';
+import Applicant from './components/applicant';
+import Executor from './components/executor';
+import Priority from './components/priority';
 
 const NewRequest: React.FC = () => {
   const panelStatus = useSelector(getNewReqPanelStatus);
@@ -78,7 +82,18 @@ const NewRequest: React.FC = () => {
               </StyledMainContent>
               <StyledBorder />
               <StyledChangeParametersBlock>
-                one
+                <EditStatus />
+                <Applicant />
+                <Executor />
+                <Priority />
+                <div>
+                  <h3>Срок</h3>
+                  <p>dfdsfs</p>
+                </div>
+                <div>
+                  <h3>Теги</h3>
+                  <p>dsfdfsd</p>
+                </div>
               </StyledChangeParametersBlock>
             </StyledEditPanel>
           </>

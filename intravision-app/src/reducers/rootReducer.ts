@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import createNewRequestReducer from './createNewRequestReducer';
 import requestsReducer from './requestsReducer';
+import requestParametersReducer from './requestParametersReducer';
 
 const rootReducer = combineReducers({
   newRequest: createNewRequestReducer,
   requests: requestsReducer,
+  parameters: requestParametersReducer,
 });
 
 type RootReducer = typeof rootReducer;
