@@ -8,7 +8,12 @@ import StyledNewRequest, {
   StyledNewRequestHeader,
 } from './styled';
 import close from '../../../assets/images/close.png';
-import { getNewReqEditPanelStatus, getNewReqPanelStatus } from '../../../selectors/selectors';
+import {
+  getNewReqAddedStatus,
+  getNewReqEditPanelStatus,
+  getNewReqPanelStatus,
+  getRequests,
+} from '../../../selectors/selectors';
 import createNewRequestAction from '../../../actions/createNewRequsetAction';
 import NewRequestForm from './newRequestForm';
 import AddCommentForm from './addCommentForm';
@@ -25,6 +30,8 @@ import ChoosePerson from '../../../components/choosePerson/ChoosePerson';
 const NewRequest: React.FC = () => {
   const panelStatus = useSelector(getNewReqPanelStatus);
   const editPanelStatus = useSelector(getNewReqEditPanelStatus);
+  const addedStatus = useSelector(getNewReqAddedStatus);
+  const newRequest = useSelector(getRequests)[0];
   const { changePanelStatus, changeEditPanelStatus } = createNewRequestAction;
   const dispatch = useDispatch();
 
@@ -52,50 +59,75 @@ const NewRequest: React.FC = () => {
         editPanelStatus
         && (
           <>
-            <StyledNewRequestHeader>
-              <p>№ 67 304</p>
-              <StyledNameRequest>
-                Просьба оценить разработку рекламного баннера на новорижском шоссе.
-                Форматы 600x500x30. Материал – полиестирол хорошего качества.
-              </StyledNameRequest>
-              <StyledNewRequestCloseHeader
-                onClick={() => {
-                  handleClick();
-                  dispatch(changeEditPanelStatus(false));
-                }}
-              >
-                <img src={close} alt="закрыть" />
-              </StyledNewRequestCloseHeader>
-            </StyledNewRequestHeader>
-            <StyledEditPanel>
-              <StyledMainContent>
-                <p>Описание</p>
-                <p>
-                  Длительное время занимает сохранение продажи
-                  (вне зависимости от кол-ва добавленных товаров).
-                  Проверить, почему занимает столько времени.
-                  Это третья строка Это третья строкаЭто
-                  третья строкаЭто третья строкаЭто третья
-                  строкаЭто третья строкаЭто третья строкаЭто
-                  третья строкаЭто третья строкаЭто третья
-                  строкаЭто третья строка  третья строка
-                  тья строка  тья строка  конец!
-                </p>
-                <AddCommentForm />
-                <Comment />
-              </StyledMainContent>
-              <StyledBorder />
-              <StyledChangeParametersBlock>
-                <EditStatus />
-                <Applicant />
-                <Creator />
-                <Executor />
-                <Priority />
-                <Deadline />
-                <Tags />
-              </StyledChangeParametersBlock>
-            </StyledEditPanel>
-            <ChoosePerson />
+            {
+              addedStatus
+                ? (
+                  <>
+                    <StyledNewRequestHeader>
+                      <p>
+                        №
+                        {newRequest.id}
+                      </p>
+                      <StyledNameRequest>
+                        {newRequest.name}
+                      </StyledNameRequest>
+                      <StyledNewRequestCloseHeader
+                        onClick={() => {
+                          handleClick();
+                          dispatch(changeEditPanelStatus(false));
+                        }}
+                      >
+                        <img src={close} alt="закрыть" />
+                      </StyledNewRequestCloseHeader>
+                    </StyledNewRequestHeader>
+                    <StyledEditPanel>
+                      <StyledMainContent>
+                        <p style={{
+                          color: '#a09fa8',
+                          fontSize: '16px',
+                        }}
+                        >
+                          Описание
+                        </p>
+                        <p
+                          style={{
+                            maxWidth: '650px',
+                          }}
+                        >
+                          {newRequest.description}
+                        </p>
+                        <AddCommentForm />
+                        <Comment />
+                      </StyledMainContent>
+                      <StyledBorder />
+                      <StyledChangeParametersBlock>
+                        <EditStatus />
+                        <Applicant />
+                        <Creator />
+                        <Executor />
+                        <Priority />
+                        <Deadline />
+                        <Tags />
+                      </StyledChangeParametersBlock>
+                    </StyledEditPanel>
+                    <ChoosePerson />
+                  </>
+                )
+                : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '30px',
+                    }}
+                  >
+                    ...загрузка...
+                  </div>
+                )
+            }
           </>
         )
       }

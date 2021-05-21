@@ -13,10 +13,10 @@ import employees from '../../assets/images/employees.png';
 import settings from '../../assets/images/settings.png';
 import assets from '../../assets/images/assets.png';
 import clients from '../../assets/images/clients.png';
-import { getPopupStatus } from '../../selectors/selectors';
+import { getPopupPersonStatus } from '../../selectors/selectors';
 
 const Menu: React.FC = () => {
-  const popupStatus = useSelector(getPopupStatus);
+  const popupStatus = useSelector(getPopupPersonStatus);
 
   return (
     <StyledMenu status={popupStatus}>

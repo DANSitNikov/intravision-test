@@ -4,12 +4,12 @@ import StyledSearchRequest, {
   SearchButton, SearchImage, StyledInput, StyledSearchInputWrapper,
 } from './styled';
 import search from '../../../assets/images/search.png';
-import { getPopupStatus } from '../../../selectors/selectors';
+import { getPopupPersonStatus } from '../../../selectors/selectors';
 
 const SearchRequest: React.FC = () => {
-  const popupStatus = useSelector(getPopupStatus);
+  const popupStatus = useSelector(getPopupPersonStatus);
   const clickHandler = () => {
-    console.log('clicked');
+    console.log('искать');
   };
 
   return (

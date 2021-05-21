@@ -1,14 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Simulate } from 'react-dom/test-utils';
-import { getPopupStatus, getUsers } from '../../../../../selectors/selectors';
+import { getUsers } from '../../../../../selectors/selectors';
 import StyledApplicant from '../applicant/styled';
 import StyledExecutor from './styled';
 import choosePersonAction from '../../../../../actions/choosePersonAction';
 
 const Executor: React.FC = () => {
   const users = useSelector(getUsers);
-  const popupStatus = useSelector(getPopupStatus);
   const { changeStatus } = choosePersonAction;
   const dispatch = useDispatch();
 
@@ -16,7 +14,10 @@ const Executor: React.FC = () => {
     <StyledApplicant>
       <p>Исполнитель</p>
       <StyledExecutor
-        onClick={() => dispatch(changeStatus(!popupStatus))}
+        onClick={() => {
+          dispatch(changeStatus(true));
+          document.body.style.overflowY = 'hidden';
+        }}
       >
         {users[2].name}
       </StyledExecutor>

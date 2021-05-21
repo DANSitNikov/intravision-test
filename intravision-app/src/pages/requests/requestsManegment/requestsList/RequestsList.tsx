@@ -5,12 +5,13 @@ import StyledRequestsList, {
   StyledRequestsListHeader,
   StyledTaskDifficulty,
 } from './styled';
-import { getRequests } from '../../../../selectors/selectors';
+import { getNewReqAddedStatus, getRequests } from '../../../../selectors/selectors';
 import Loader from '../../../../components/loader';
 import { getAllRequests } from '../../../../actions/requestsAction';
 
 const RequestsList: React.FC = () => {
   const allRequests = useSelector(getRequests);
+  const addedStatus = useSelector(getNewReqAddedStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,32 +21,34 @@ const RequestsList: React.FC = () => {
   }, []);
 
   return (
-    allRequests.length === 0
-      ? <Loader />
-      : (
-        <StyledRequestsList>
-          <StyledRequestsListHeader>
-            <p />
-            <h3>ID</h3>
-            <h3>Название</h3>
-            <h3>Статус</h3>
-            <h3>Исполнитель</h3>
-          </StyledRequestsListHeader>
-          {
-            allRequests.map((request) => {
-              return (
-                <StyledRequestsListContent key={request.id}>
-                  <StyledTaskDifficulty back={request.statusRgb} />
-                  <p>{request.id}</p>
-                  <p>{request.name}</p>
-                  <p>{request.statusName}</p>
-                  <p>{request.executorName}</p>
-                </StyledRequestsListContent>
-              );
-            })
-          }
-        </StyledRequestsList>
-      )
+    <>
+      {
+        (allRequests.length === 0 || !addedStatus)
+          && <Loader />
+      }
+      <StyledRequestsList>
+        <StyledRequestsListHeader>
+          <p />
+          <h3>ID</h3>
+          <h3>Название</h3>
+          <h3>Статус</h3>
+          <h3>Исполнитель</h3>
+        </StyledRequestsListHeader>
+        {
+          allRequests.map((request) => {
+            return (
+              <StyledRequestsListContent key={request.id}>
+                <StyledTaskDifficulty back={request.statusRgb} />
+                <p>{request.id}</p>
+                <p>{request.name}</p>
+                <p>{request.statusName}</p>
+                <p>{request.executorName}</p>
+              </StyledRequestsListContent>
+            );
+          })
+        }
+      </StyledRequestsList>
+    </>
   );
 };
 

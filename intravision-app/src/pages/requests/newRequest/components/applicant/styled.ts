@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledApplicant = styled.div`
   margin-top: 20px;
+  position: relative;
   
   p{
     height: 20px;

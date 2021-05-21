@@ -11,7 +11,6 @@ import IntraVision from '../pages/intravision';
 import StyledApp from './styled';
 
 const App: React.FC = () => {
-  console.log('aaa');
   return (
     <BrowserRouter>
       <StyledApp>

@@ -16,9 +16,10 @@ const StyledChoosePerson = styled.div`
 
 export const StyledInsidePerson = styled.div`
   width: 500px;
-  height: 600px;
+  height: 500px;
   background: white;
   border-radius: 10px;
+  overflow-y: auto;
 `;
 
 export const StyledInput = styled.div`
@@ -46,9 +47,13 @@ export const StyledClose = styled.img`
   cursor: pointer;
 `;
 
+export const StyledPersonWrapper = styled.div`
+  background-color: #42aaff;
+  height: 90%;
+`;
+
 export const StyledPerson = styled.div`
   height: 40px;
-  background-color: #42aaff;
   padding-top: 10px;
   padding-left: 30px;
   border-bottom: 2px solid black;

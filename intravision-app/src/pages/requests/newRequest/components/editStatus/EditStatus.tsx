@@ -30,6 +30,7 @@ const EditStatus: React.FC = () => {
                   setActiveStatus(status);
                   setListStatus(false);
                 }}
+                key={status.id}
               >
                 {status.name}
               </StyledStatus>
