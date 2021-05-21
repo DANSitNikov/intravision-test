@@ -42,7 +42,7 @@ export const StyledSubmitButton = styled.button`
 export const StyledErrorMessage = styled.span`
   position: absolute;
   top: 0;
-  left: 200px;
+  left: 230px;
   color: red;
 `;
 

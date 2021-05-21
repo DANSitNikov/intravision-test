@@ -3,8 +3,15 @@ import { useSelector } from 'react-redux';
 import { getPriorities } from '../../../../../selectors/selectors';
 import StyledApplicant from '../applicant/styled';
 import StyledPriority, { StyledSelectPriority } from './styled';
+import { ChangeRequestParameters } from '../../NewRequest';
 
-const Priority: React.FC = () => {
+interface PropsType {
+  setParameters: (arg: ChangeRequestParameters) => void,
+  parameters: ChangeRequestParameters,
+}
+
+const Priority: React.FC<PropsType> = (props) => {
+  const { setParameters, parameters } = props;
   const priorities = useSelector(getPriorities);
   const [choosePriorityBlockStatus, setChoosePriorityBlockStatus] = useState(false);
 
@@ -14,7 +21,7 @@ const Priority: React.FC = () => {
       <StyledPriority
         onClick={() => setChoosePriorityBlockStatus(!choosePriorityBlockStatus)}
       >
-        {priorities[0].name}
+        {parameters.priorityName}
       </StyledPriority>
       <StyledSelectPriority status={choosePriorityBlockStatus}>
         {
@@ -23,7 +30,14 @@ const Priority: React.FC = () => {
               // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
               <p
                 key={priority.id}
-                onClick={() => setChoosePriorityBlockStatus(!choosePriorityBlockStatus)}
+                onClick={() => {
+                  setChoosePriorityBlockStatus(!choosePriorityBlockStatus);
+                  setParameters({
+                    ...parameters,
+                    priorityId: priority.id,
+                    priorityName: priority.name,
+                  });
+                }}
               >
                 {priority.name}
               </p>

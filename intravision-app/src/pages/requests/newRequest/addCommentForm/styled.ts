@@ -16,4 +16,22 @@ const StyledAddForm = styled.div`
   }
 `;
 
+export const StyledSubmitButton = styled.button`
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #008cf0;
+  color: white;
+  outline: none;
+  transition: all 0.3s;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #017dd4;
+  }
+`;
+
 export default StyledAddForm;

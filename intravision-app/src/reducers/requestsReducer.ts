@@ -41,7 +41,7 @@ type ActionType = ActionsType<typeof requestsAction>
 
 const requestsReducer = (state = initialState, action: ActionType): InitialState => {
   switch (action.type) {
-    case 'GET_REQUESTS':
+    case 'SET_REQUESTS':
       return {
         ...state,
         requests: action.requests,

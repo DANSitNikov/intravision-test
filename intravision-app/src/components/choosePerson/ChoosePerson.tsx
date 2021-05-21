@@ -6,8 +6,15 @@ import StyledChoosePerson, {
   StyledClose, StyledInput, StyledInsidePerson, StyledPerson, StyledPersonWrapper,
 } from './styled';
 import choosePersonAction from '../../actions/choosePersonAction';
+import { ChangeRequestParameters } from '../../pages/requests/newRequest/NewRequest';
 
-const ChoosePerson: React.FC = () => {
+interface PropsType {
+  setParameters: (arg: ChangeRequestParameters) => void,
+  parameters: ChangeRequestParameters,
+}
+
+const ChoosePerson: React.FC<PropsType> = (props) => {
+  const { setParameters, parameters } = props;
   const users = useSelector(getUsers);
   const popupStatus = useSelector(getPopupPersonStatus);
   const { changeStatus } = choosePersonAction;
@@ -37,6 +44,11 @@ const ChoosePerson: React.FC = () => {
                   <p
                     onClick={() => {
                       dispatch(changeStatus(false));
+                      setParameters({
+                        ...parameters,
+                        executorId: user.id,
+                        executorName: user.name,
+                      });
                       document.body.style.overflow = 'auto';
                     }}
                   >

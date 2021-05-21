@@ -3,10 +3,17 @@ import { useSelector } from 'react-redux';
 import { getStatuses } from '../../../../../selectors/selectors';
 import StyledEditStatus, { StyledSelectList, StyledStatus, StyledStatusHeader } from './styled';
 import { Status } from '../../../../../reducers/requestParametersReducer';
+import { ChangeRequestParameters } from '../../NewRequest';
 
-const EditStatus: React.FC = () => {
+interface PropsType {
+  setParameters: (arg: ChangeRequestParameters) => void,
+  parameters: ChangeRequestParameters,
+
+}
+
+const EditStatus: React.FC<PropsType> = (props) => {
+  const { parameters, setParameters } = props;
   const statuses = useSelector(getStatuses);
-  const [activeStatus, setActiveStatus] = useState<Status>(statuses[0]);
   const [listStatus, setListStatus] = useState(false);
 
   return (
@@ -15,10 +22,12 @@ const EditStatus: React.FC = () => {
         Статус
       </StyledStatusHeader>
       <StyledStatus
-        color={activeStatus.rgb}
-        onClick={() => setListStatus(!listStatus)}
+        color={parameters.statusRgb}
+        onClick={() => {
+          setListStatus(!listStatus);
+        }}
       >
-        {activeStatus.name}
+        {parameters.statusName}
       </StyledStatus>
       <StyledSelectList status={listStatus}>
         {
@@ -27,8 +36,13 @@ const EditStatus: React.FC = () => {
               <StyledStatus
                 color={status.rgb}
                 onClick={() => {
-                  setActiveStatus(status);
                   setListStatus(false);
+                  setParameters({
+                    ...parameters,
+                    statusId: status.id,
+                    statusName: status.name,
+                    statusRgb: status.rgb,
+                  });
                 }}
                 key={status.id}
               >

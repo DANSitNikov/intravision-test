@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledNewRequest, {
   StyledBorder, StyledChangeParametersBlock,
@@ -17,7 +17,6 @@ import {
 import createNewRequestAction from '../../../actions/createNewRequsetAction';
 import NewRequestForm from './newRequestForm';
 import AddCommentForm from './addCommentForm';
-import Comment from '../../../components/comment';
 import EditStatus from './components/editStatus';
 import Applicant from './components/applicant';
 import Executor from './components/executor';
@@ -25,15 +24,46 @@ import Priority from './components/priority';
 import Creator from './components/creator';
 import Deadline from './components/deadline';
 import Tags from './components/tags';
-import ChoosePerson from '../../../components/choosePerson/ChoosePerson';
+import { StyledSubmitButton } from './newRequestForm/styled';
+import Comments from './comments';
+import requestsAction, { updateCurRequest } from '../../../actions/requestsAction';
+import { Request } from '../../../reducers/requestsReducer';
+
+export interface ChangeRequestParameters {
+  'priorityId'?: number,
+  'priorityName'?: string,
+  'statusId'?: number,
+  'statusName'?: string,
+  'statusRgb'?: string,
+  'executorId'?: number,
+  'executorName'?: string,
+}
 
 const NewRequest: React.FC = () => {
+  const { setAllRequests } = requestsAction;
   const panelStatus = useSelector(getNewReqPanelStatus);
   const editPanelStatus = useSelector(getNewReqEditPanelStatus);
   const addedStatus = useSelector(getNewReqAddedStatus);
+  const allRequests = useSelector(getRequests);
   const newRequest = useSelector(getRequests)[0];
+  const [parameters, setParameters] = useState<ChangeRequestParameters>({});
   const { changePanelStatus, changeEditPanelStatus } = createNewRequestAction;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (newRequest) {
+      setParameters({
+        ...parameters,
+        priorityId: newRequest.priorityId,
+        priorityName: newRequest.priorityName,
+        statusId: newRequest.statusId,
+        statusName: newRequest.statusName,
+        statusRgb: newRequest.statusRgb,
+        executorId: newRequest.executorId,
+        executorName: newRequest.executorName,
+      });
+    }
+  }, [newRequest]);
 
   const handleClick = () => {
     dispatch(changePanelStatus(false));
@@ -97,20 +127,35 @@ const NewRequest: React.FC = () => {
                           {newRequest.description}
                         </p>
                         <AddCommentForm />
-                        <Comment />
+                        <StyledSubmitButton
+                          onClick={() => {
+                            const updateRequest = {
+                              ...newRequest,
+                              ...parameters,
+                            };
+                            const setNewRequest: Array<Request> = [
+                              updateRequest,
+                              ...allRequests.slice(1),
+                            ];
+                            dispatch(setAllRequests(setNewRequest));
+                            dispatch(updateCurRequest(updateRequest));
+                          }}
+                        >
+                          Сохранить
+                        </StyledSubmitButton>
+                        <Comments />
                       </StyledMainContent>
                       <StyledBorder />
                       <StyledChangeParametersBlock>
-                        <EditStatus />
+                        <EditStatus setParameters={setParameters} parameters={parameters} />
                         <Applicant />
                         <Creator />
-                        <Executor />
-                        <Priority />
+                        <Executor setParameters={setParameters} parameters={parameters} />
+                        <Priority setParameters={setParameters} parameters={parameters} />
                         <Deadline />
                         <Tags />
                       </StyledChangeParametersBlock>
                     </StyledEditPanel>
-                    <ChoosePerson />
                   </>
                 )
                 : (

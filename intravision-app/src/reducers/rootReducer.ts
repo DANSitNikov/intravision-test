@@ -3,12 +3,14 @@ import createNewRequestReducer from './createNewRequestReducer';
 import requestsReducer from './requestsReducer';
 import requestParametersReducer from './requestParametersReducer';
 import choosePersonReducer from './choosePersonReducer';
+import commentReducer from './commentReducer';
 
 const rootReducer = combineReducers({
   newRequest: createNewRequestReducer,
   requests: requestsReducer,
   parameters: requestParametersReducer,
   choosePerson: choosePersonReducer,
+  comments: commentReducer,
 });
 
 type RootReducer = typeof rootReducer;

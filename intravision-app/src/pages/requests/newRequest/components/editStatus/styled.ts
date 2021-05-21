@@ -9,7 +9,7 @@ export const StyledStatus = styled.div`
   width: 100%;
   height: 40px;
   border-radius: 5px;
-  background: ${(props: {color: string}) => props.color};
+  background: ${(props: {color: any}) => props.color};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +37,7 @@ export const StyledSelectList = styled.div`
   top: 70px;
   display: ${(props: {status: boolean}) => (props.status ? 'block' : 'none')};
   cursor: pointer;
+  z-index: 100;
 `;
 
 export default StyledEditStatus;

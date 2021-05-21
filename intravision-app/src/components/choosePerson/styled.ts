@@ -20,6 +20,7 @@ export const StyledInsidePerson = styled.div`
   background: white;
   border-radius: 10px;
   overflow-y: auto;
+  color: white !important;
 `;
 
 export const StyledInput = styled.div`
@@ -62,6 +63,7 @@ export const StyledPerson = styled.div`
     margin: 0;
     font-size: 16px;
     transition: all 0.3s;
+    color: white !important;
   }
   
   &:hover{

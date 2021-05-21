@@ -4,9 +4,16 @@ import { getUsers } from '../../../../../selectors/selectors';
 import StyledApplicant from '../applicant/styled';
 import StyledExecutor from './styled';
 import choosePersonAction from '../../../../../actions/choosePersonAction';
+import { ChangeRequestParameters } from '../../NewRequest';
+import ChoosePerson from '../../../../../components/choosePerson/ChoosePerson';
 
-const Executor: React.FC = () => {
-  const users = useSelector(getUsers);
+interface PropsType {
+  setParameters: (arg: ChangeRequestParameters) => void,
+  parameters: ChangeRequestParameters,
+}
+
+const Executor: React.FC<PropsType> = (props) => {
+  const { setParameters, parameters } = props;
   const { changeStatus } = choosePersonAction;
   const dispatch = useDispatch();
 
@@ -19,8 +26,9 @@ const Executor: React.FC = () => {
           document.body.style.overflowY = 'hidden';
         }}
       >
-        {users[2].name}
+        {parameters.executorName}
       </StyledExecutor>
+      <ChoosePerson setParameters={setParameters} parameters={parameters} />
     </StyledApplicant>
   );
 };

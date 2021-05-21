@@ -2,33 +2,52 @@ import React from 'react';
 import {
   Field, Formik, Form,
 } from 'formik';
-import { useDispatch } from 'react-redux';
-import { postNewRequest } from '../../../../actions/createNewRequsetAction';
-import { StyledSubmitButton } from '../newRequestForm/styled';
-import StyledAddForm from './styled';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
+import StyledAddForm, { StyledSubmitButton } from './styled';
+import { getRequests } from '../../../../selectors/selectors';
+import commentAction from '../../../../actions/commentAction';
+import { StyledErrorMessage } from '../newRequestForm/styled';
+
+const SignupSchema = Yup.object().shape({
+  comment: Yup.string()
+    .required('Обязательное поле'),
+});
 
 const AddCommentForm: React.FC = () => {
+  const lastRequest = useSelector(getRequests)[0];
+  const { addComment } = commentAction;
   const dispatch = useDispatch();
 
   return (
     <StyledAddForm>
       <Formik
         initialValues={{
-          name: '',
-          description: '',
+          comment: '',
         }}
-        onSubmit={(values) => {
-          console.log(values);
-          // dispatch(postNewRequest(values));
+        validationSchema={SignupSchema}
+        onSubmit={(value, { resetForm }) => {
+          const { comment } = value;
+          const { id } = lastRequest;
+          dispatch(addComment({ id, comment }));
+          resetForm();
         }}
       >
-        <Form>
-          <label htmlFor="name">Добавление комментария</label>
-          <br />
-          <Field name="name" component="textarea" />
-          <br />
-          <StyledSubmitButton>Сохранить</StyledSubmitButton>
-        </Form>
+        {({ errors, touched }) => (
+          <Form style={{ position: 'relative' }}>
+            <label htmlFor="comment">Добавление комментария </label>
+            <br />
+            <Field
+              name="comment"
+              component="textarea"
+            />
+            {errors.comment && touched.comment ? (
+              <StyledErrorMessage>Невозможно добавить пустой комментарий</StyledErrorMessage>
+            ) : null}
+            <br />
+            <StyledSubmitButton>Добавить</StyledSubmitButton>
+          </Form>
+        )}
       </Formik>
     </StyledAddForm>
   );

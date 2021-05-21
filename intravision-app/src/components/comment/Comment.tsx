@@ -2,8 +2,12 @@ import React from 'react';
 import userTemplatePhoto from '../../assets/images/userTemplatePhoto.svg';
 import StyledComment from './styled';
 
-const Comment: React.FC = () => {
-  console.log('one');
+interface PropsType {
+  comment: string
+}
+
+const Comment: React.FC<PropsType> = (props) => {
+  const { comment } = props;
 
   return (
     <StyledComment>
@@ -11,10 +15,10 @@ const Comment: React.FC = () => {
         <img src={userTemplatePhoto} alt="user" />
       </div>
       <div>
-        <h3>Имя</h3>
-        <p>да</p>
+        <h3>Имя Фамилия</h3>
+        <p>Дата</p>
         <div>
-          <p>Комментарий</p>
+          <p>{comment}</p>
         </div>
       </div>
     </StyledComment>
