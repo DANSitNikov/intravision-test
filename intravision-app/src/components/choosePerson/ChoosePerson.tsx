@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPopupPersonStatus, getUsers } from '../../selectors/selectors';
 import close from '../../assets/images/close.png';
@@ -20,6 +20,17 @@ const ChoosePerson: React.FC<PropsType> = (props) => {
   const { changeStatus } = choosePersonAction;
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const keyDownHandler = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        dispatch(changeStatus(false));
+      }
+    };
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => document.removeEventListener('keydown', keyDownHandler);
+  });
+
   return (
     <StyledChoosePerson status={popupStatus}>
       <StyledInsidePerson>
@@ -32,9 +43,6 @@ const ChoosePerson: React.FC<PropsType> = (props) => {
             document.body.style.overflow = 'auto';
           }}
         />
-        <StyledInput>
-          <input type="text" />
-        </StyledInput>
         <StyledPersonWrapper>
           {
             users.map((user) => {

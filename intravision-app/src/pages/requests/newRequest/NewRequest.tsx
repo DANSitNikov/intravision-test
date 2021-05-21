@@ -9,6 +9,7 @@ import StyledNewRequest, {
 } from './styled';
 import close from '../../../assets/images/close.png';
 import {
+  getComments,
   getNewReqAddedStatus,
   getNewReqEditPanelStatus,
   getNewReqPanelStatus,
@@ -46,6 +47,7 @@ const NewRequest: React.FC = () => {
   const addedStatus = useSelector(getNewReqAddedStatus);
   const allRequests = useSelector(getRequests);
   const newRequest = useSelector(getRequests)[0];
+  const comments = useSelector(getComments);
   const [parameters, setParameters] = useState<ChangeRequestParameters>({});
   const { changePanelStatus, changeEditPanelStatus } = createNewRequestAction;
   const dispatch = useDispatch();
@@ -129,9 +131,12 @@ const NewRequest: React.FC = () => {
                         <AddCommentForm />
                         <StyledSubmitButton
                           onClick={() => {
+                            // eslint-disable-next-line max-len
+                            const reqComments = comments.filter((comment) => comment.id === newRequest.id);
                             const updateRequest = {
                               ...newRequest,
                               ...parameters,
+                              comments: reqComments,
                             };
                             const setNewRequest: Array<Request> = [
                               updateRequest,
@@ -143,7 +148,7 @@ const NewRequest: React.FC = () => {
                         >
                           Сохранить
                         </StyledSubmitButton>
-                        <Comments />
+                        <Comments request={newRequest} />
                       </StyledMainContent>
                       <StyledBorder />
                       <StyledChangeParametersBlock>

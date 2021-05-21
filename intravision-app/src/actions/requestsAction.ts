@@ -19,10 +19,9 @@ export const getAllRequests = () => async (dispatch: Dispatch) => {
   dispatch(requestsAction.setAllRequests(data));
 };
 
-// Не работает!!!
 export const updateCurRequest = (requests: Request) => async (dispatch: Dispatch) => {
-  await axios.put('http://intravision-task.test01.intravision.ru/odata/tasks?tenantguid=4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc/Tasks', {
-    requests,
+  await axios.put('http://intravision-task.test01.intravision.ru/api/4c7ebd5a-e44a-45a8-bddb-ecba2a4d2cbc/Tasks', {
+    ...requests,
   }).catch((err) => console.log(err));
 };
 

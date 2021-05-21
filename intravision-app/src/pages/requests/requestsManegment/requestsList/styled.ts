@@ -90,4 +90,18 @@ export const StyledTaskDifficulty = styled.div`
   position: relative;
 `;
 
+export const StyledStatusName = styled.p`
+  background-color: ${(props: {color: string}) => props.color};
+  width: 100px;
+  border-radius: 11px;
+  font-size: 14px;
+  padding-left: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 35px;
+  margin-top: 10px !important;
+`;
+
 export default StyledRequestsList;

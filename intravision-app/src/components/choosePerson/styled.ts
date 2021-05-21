@@ -50,7 +50,6 @@ export const StyledClose = styled.img`
 
 export const StyledPersonWrapper = styled.div`
   background-color: #42aaff;
-  height: 90%;
 `;
 
 export const StyledPerson = styled.div`

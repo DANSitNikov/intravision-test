@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledRequestsList, {
   StyledRequestsListContent,
-  StyledRequestsListHeader,
+  StyledRequestsListHeader, StyledStatusName,
   StyledTaskDifficulty,
 } from './styled';
 import { getNewReqAddedStatus, getRequests } from '../../../../selectors/selectors';
@@ -31,7 +31,7 @@ const RequestsList: React.FC = () => {
           <p />
           <h3>ID</h3>
           <h3>Название</h3>
-          <h3>Статус</h3>
+          <h3 style={{ width: '100px' }}>Статус</h3>
           <h3>Исполнитель</h3>
         </StyledRequestsListHeader>
         {
@@ -41,7 +41,7 @@ const RequestsList: React.FC = () => {
                 <StyledTaskDifficulty back={request.statusRgb} />
                 <p>{request.id}</p>
                 <p>{request.name}</p>
-                <p>{request.statusName}</p>
+                <StyledStatusName color={request.statusRgb}>{request.statusName}</StyledStatusName>
                 <p>{request.executorName}</p>
               </StyledRequestsListContent>
             );

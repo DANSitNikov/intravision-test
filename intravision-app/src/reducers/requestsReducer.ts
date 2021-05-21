@@ -30,6 +30,7 @@ export interface Request {
   'executorGroupId': number,
   'executorGroupName': string,
   'tags': Array<Tags>,
+  'comments'?: any,
 }
 
 const initialState = {
