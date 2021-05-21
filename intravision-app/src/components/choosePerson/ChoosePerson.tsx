@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPopupPersonStatus, getUsers } from '../../selectors/selectors';
 import close from '../../assets/images/close.png';
 import StyledChoosePerson, {
-  StyledClose, StyledInput, StyledInsidePerson, StyledPerson, StyledPersonWrapper,
+  StyledClose, StyledInsidePerson, StyledPerson, StyledPersonWrapper,
 } from './styled';
 import choosePersonAction from '../../actions/choosePersonAction';
 import { ChangeRequestParameters } from '../../pages/requests/newRequest/NewRequest';

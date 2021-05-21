@@ -1,6 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../../../../selectors/selectors';
+import { useDispatch } from 'react-redux';
 import StyledApplicant from '../applicant/styled';
 import StyledExecutor from './styled';
 import choosePersonAction from '../../../../../actions/choosePersonAction';
